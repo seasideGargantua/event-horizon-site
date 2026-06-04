@@ -18,14 +18,17 @@ const { project } = Astro.props;
 const data = project.data;
 const date = new Intl.DateTimeFormat('en', { month: 'short', day: 'numeric' }).format(data.last_update);
 ---
-<a class="card" href={`/projects/${data.slug}`}>
-  <div class="kicker">{data.category} / {date}</div>
-  <h3>{data.title}</h3>
-  <p>{data.one_liner}</p>
-  <div class="meta-row">
-    <SignalBadge>{data.stage}</SignalBadge>
-    {data.investor_interest !== 'not_open' && <SignalBadge tone="orange">investor {data.investor_interest}</SignalBadge>}
-    {data.current_need.slice(0, 2).map((need) => <SignalBadge tone="green">{need}</SignalBadge>)}
+<a class="card project-card" href={`/projects/${data.slug}`}>
+  <div class="project-topline">
+    <span class="kicker">{data.category}</span>
+    <span>{date}</span>
   </div>
-  <p><strong>Signal:</strong> {data.traction_signal}</p>
+  <h3>{data.title}</h3>
+  <p class="project-line">{data.one_liner}</p>
+  <div class="meta-row compact-row">
+    <SignalBadge>{data.stage}</SignalBadge>
+    {data.current_need.slice(0, 1).map((need) => <SignalBadge tone="green">{need}</SignalBadge>)}
+    {data.investor_interest !== 'not_open' && <SignalBadge tone="orange">investor</SignalBadge>}
+  </div>
+  <p class="signal-line">{data.traction_signal}</p>
 </a>

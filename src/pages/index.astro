@@ -14,13 +14,17 @@ const latestDrop = drops[0];
   <section class="hero">
     <div class="container hero-grid">
       <div class="hero-copy">
-        <span class="eyebrow">AI product boundary</span>
-        <h1>Cross the boundary of the old world.</h1>
-        <p>Event Horizon is an AI superindividual product network: a visibility layer where early products collect users, collaborators, and capital signals through public product proof.</p>
+        <span class="eyebrow">AI product frontier</span>
+        <h1>Event Horizon</h1>
+        <p class="hero-line">Where AI-native products cross into visibility.</p>
         <div class="hero-actions">
-          <a class="button" href="/submit">Submit your product</a>
-          <a class="button secondary" href="/projects">Explore projects</a>
-          <a class="button secondary" href="/investors">Investor briefing</a>
+          <a class="button" href="/submit">Submit product</a>
+          <a class="button secondary" href="/projects">Explore signals</a>
+        </div>
+        <div class="hero-stats" aria-label="Event Horizon operating model">
+          <div><strong>01</strong><span>Project radar</span></div>
+          <div><strong>02</strong><span>Weekly drops</span></div>
+          <div><strong>03</strong><span>Investor signal</span></div>
         </div>
       </div>
       <div class="horizon-visual" aria-label="Event horizon signal visual">
@@ -32,30 +36,26 @@ const latestDrop = drops[0];
   </section>
 
   <section class="section compact">
-    <div class="container grid-3">
-      <div class="card">
-        <div class="kicker">Visibility</div>
-        <h3>Fair first light</h3>
-        <p>New AI products get a structured first exposure path through project cards, Product Drop, and category rotation.</p>
+    <div class="container value-strip">
+      <div>
+        <span>Visibility</span>
+        <strong>Fair first light</strong>
       </div>
-      <div class="card">
-        <div class="kicker">Collaboration</div>
-        <h3>Builder mesh</h3>
-        <p>Every project carries asks: users, design, engineering, growth, industry resources, or investor feedback.</p>
+      <div>
+        <span>Collaboration</span>
+        <strong>Builder mesh</strong>
       </div>
-      <div class="card">
-        <div class="kicker">Capital signal</div>
-        <h3>Proof over pitch</h3>
-        <p>Investors follow continuous updates, traction signals, risk notes, and Demo candidates without noisy fundraising theater.</p>
+      <div>
+        <span>Capital</span>
+        <strong>Proof over pitch</strong>
       </div>
     </div>
   </section>
 
   <section class="section">
-    <div class="container">
+    <div class="container section-head">
       <span class="eyebrow">Live signals</span>
-      <h2>Products approaching the horizon.</h2>
-      <p>These demo cards show the expected signal density: target user, stage, current needs, investor openness, and next milestone.</p>
+      <h2>Approaching the horizon.</h2>
       <div class="grid-3" style="margin-top: 28px;">
         {featured.map((project) => <ProjectCard project={project} />)}
       </div>
@@ -65,14 +65,14 @@ const latestDrop = drops[0];
   <section class="section compact">
     <div class="container grid-2">
       {latestDrop && <DropCard drop={latestDrop} />}
-      <div class="card">
-        <div class="kicker">Operating rhythm</div>
-        <h3>Weekly Product Drop</h3>
-        <p>Each drop publishes new products, updates, collaboration needs, and investor-readable notes.</p>
+      <div class="card drop-panel">
+        <div class="kicker">Rhythm</div>
+        <h3>Product Drop</h3>
+        <p>New launches. Fresh proof. Specific asks.</p>
         <div class="meta-row">
-          <SignalBadge>new products</SignalBadge>
-          <SignalBadge tone="green">collab asks</SignalBadge>
-          <SignalBadge tone="orange">investor notes</SignalBadge>
+          <SignalBadge>new</SignalBadge>
+          <SignalBadge tone="green">collab</SignalBadge>
+          <SignalBadge tone="orange">capital</SignalBadge>
         </div>
         <a class="button secondary" href="/drops">Read drops</a>
       </div>

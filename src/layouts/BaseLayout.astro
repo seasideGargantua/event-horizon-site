@@ -1,0 +1,58 @@
+---
+import '@styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = 'Event Horizon — AI Superindividual Product Network',
+  description = 'AI 新世界边界上的产品社区。连接产品、用户、协作者与资本信号。',
+} = Astro.props;
+---
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta name="theme-color" content="#05070a" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>{title}</title>
+  </head>
+  <body>
+    <header class="site-header">
+      <nav class="container nav" aria-label="Primary navigation">
+        <a href="/" class="brand" aria-label="Event Horizon home">
+          <span class="brand-mark" aria-hidden="true"></span>
+          <span>Event Horizon</span>
+        </a>
+        <div class="nav-links">
+          <a href="/projects">Projects</a>
+          <a href="/drops">Product Drop</a>
+          <a href="/collab">Collab</a>
+          <a href="/investors">Investors</a>
+          <a href="/events">Events</a>
+          <a href="/about">About</a>
+        </div>
+        <a class="nav-cta" href="/submit">Submit product</a>
+      </nav>
+    </header>
+    <main>
+      <slot />
+    </main>
+    <footer class="footer">
+      <div class="container footer-grid">
+        <div>
+          <strong>Event Horizon</strong>
+          <p>AI 新世界边界上的产品社区。</p>
+        </div>
+        <p>Product proof over pitch decks. Built for AI-native builders.</p>
+      </div>
+    </footer>
+  </body>
+</html>

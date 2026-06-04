@@ -1,0 +1,17 @@
+---
+interface DropData {
+  title: string;
+  slug: string;
+  date: Date;
+  issue: number;
+  summary: string;
+}
+interface Props { drop: { data: DropData } }
+const { drop } = Astro.props;
+const date = new Intl.DateTimeFormat('en', { year: 'numeric', month: 'short', day: 'numeric' }).format(drop.data.date);
+---
+<a class="card" href={`/drops/${drop.data.slug}`}>
+  <div class="kicker">Drop #{drop.data.issue} / {date}</div>
+  <h3>{drop.data.title}</h3>
+  <p>{drop.data.summary}</p>
+</a>

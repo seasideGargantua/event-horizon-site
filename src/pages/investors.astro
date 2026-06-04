@@ -1,0 +1,50 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '@layouts/BaseLayout.astro';
+import ProjectCard from '@components/ProjectCard.astro';
+
+const projects = (await getCollection('projects')).filter((project) => project.data.investor_interest !== 'not_open');
+---
+<BaseLayout title="Investors — Event Horizon">
+  <section class="page-hero">
+    <div class="container">
+      <span class="eyebrow">Investor briefing</span>
+      <h1>Early product signals without pitch theater.</h1>
+      <p>Event Horizon provides authorized, continuous project updates for investors, alumni, scouts, and resource partners. It is an information layer, not investment advice.</p>
+      <div class="hero-actions">
+        <a class="button" href="https://example.com/briefing" target="_blank" rel="noreferrer">Subscribe to briefing</a>
+        <a class="button secondary" href="/drops">Read latest drop</a>
+      </div>
+    </div>
+  </section>
+  <section class="section compact">
+    <div class="container grid-2">
+      <div class="card">
+        <div class="kicker">Boundary</div>
+        <h3>What this is</h3>
+        <ul class="signal-list list-reset">
+          <li>Authorized public project updates.</li>
+          <li>Product stage, traction signal, risk note, and current ask.</li>
+          <li>Demo Day and Builder Review invitations.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="kicker">Disclaimer</div>
+        <h3>What this is not</h3>
+        <ul class="signal-list list-reset">
+          <li>No fundraising guarantee.</li>
+          <li>No investment, legal, tax, or financial advice.</li>
+          <li>No private metrics without explicit project authorization.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+  <section class="section compact">
+    <div class="container">
+      <span class="eyebrow">Open to investor attention</span>
+      <div class="grid-2" style="margin-top: 24px;">
+        {projects.map((project) => <ProjectCard project={project} />)}
+      </div>
+    </div>
+  </section>
+</BaseLayout>

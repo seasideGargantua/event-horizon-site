@@ -1,0 +1,31 @@
+---
+import SignalBadge from './SignalBadge.astro';
+
+interface ProjectData {
+  title: string;
+  slug: string;
+  one_liner: string;
+  category: string;
+  stage: string;
+  traction_signal: string;
+  current_need: string[];
+  investor_interest: string;
+  last_update: Date;
+}
+
+interface Props { project: { data: ProjectData } }
+const { project } = Astro.props;
+const data = project.data;
+const date = new Intl.DateTimeFormat('en', { month: 'short', day: 'numeric' }).format(data.last_update);
+---
+<a class="card" href={`/projects/${data.slug}`}>
+  <div class="kicker">{data.category} / {date}</div>
+  <h3>{data.title}</h3>
+  <p>{data.one_liner}</p>
+  <div class="meta-row">
+    <SignalBadge>{data.stage}</SignalBadge>
+    {data.investor_interest !== 'not_open' && <SignalBadge tone="orange">investor {data.investor_interest}</SignalBadge>}
+    {data.current_need.slice(0, 2).map((need) => <SignalBadge tone="green">{need}</SignalBadge>)}
+  </div>
+  <p><strong>Signal:</strong> {data.traction_signal}</p>
+</a>

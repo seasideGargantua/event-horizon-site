@@ -1,0 +1,81 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '@layouts/BaseLayout.astro';
+import ProjectCard from '@components/ProjectCard.astro';
+import DropCard from '@components/DropCard.astro';
+import SignalBadge from '@components/SignalBadge.astro';
+
+const projects = (await getCollection('projects')).sort((a, b) => Number(b.data.featured) - Number(a.data.featured));
+const drops = (await getCollection('drops')).sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+const featured = projects.slice(0, 3);
+const latestDrop = drops[0];
+---
+<BaseLayout>
+  <section class="hero">
+    <div class="container hero-grid">
+      <div class="hero-copy">
+        <span class="eyebrow">AI product boundary</span>
+        <h1>Cross the boundary of the old world.</h1>
+        <p>Event Horizon is an AI superindividual product network: a visibility layer where early products collect users, collaborators, and capital signals through public product proof.</p>
+        <div class="hero-actions">
+          <a class="button" href="/submit">Submit your product</a>
+          <a class="button secondary" href="/projects">Explore projects</a>
+          <a class="button secondary" href="/investors">Investor briefing</a>
+        </div>
+      </div>
+      <div class="horizon-visual" aria-label="Event horizon signal visual">
+        <span class="orbit-dot"></span>
+        <span class="orbit-dot"></span>
+        <span class="orbit-dot"></span>
+      </div>
+    </div>
+  </section>
+
+  <section class="section compact">
+    <div class="container grid-3">
+      <div class="card">
+        <div class="kicker">Visibility</div>
+        <h3>Fair first light</h3>
+        <p>New AI products get a structured first exposure path through project cards, Product Drop, and category rotation.</p>
+      </div>
+      <div class="card">
+        <div class="kicker">Collaboration</div>
+        <h3>Builder mesh</h3>
+        <p>Every project carries asks: users, design, engineering, growth, industry resources, or investor feedback.</p>
+      </div>
+      <div class="card">
+        <div class="kicker">Capital signal</div>
+        <h3>Proof over pitch</h3>
+        <p>Investors follow continuous updates, traction signals, risk notes, and Demo candidates without noisy fundraising theater.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <span class="eyebrow">Live signals</span>
+      <h2>Products approaching the horizon.</h2>
+      <p>These demo cards show the expected signal density: target user, stage, current needs, investor openness, and next milestone.</p>
+      <div class="grid-3" style="margin-top: 28px;">
+        {featured.map((project) => <ProjectCard project={project} />)}
+      </div>
+    </div>
+  </section>
+
+  <section class="section compact">
+    <div class="container grid-2">
+      {latestDrop && <DropCard drop={latestDrop} />}
+      <div class="card">
+        <div class="kicker">Operating rhythm</div>
+        <h3>Weekly Product Drop</h3>
+        <p>Each drop publishes new products, updates, collaboration needs, and investor-readable notes.</p>
+        <div class="meta-row">
+          <SignalBadge>new products</SignalBadge>
+          <SignalBadge tone="green">collab asks</SignalBadge>
+          <SignalBadge tone="orange">investor notes</SignalBadge>
+        </div>
+        <a class="button secondary" href="/drops">Read drops</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

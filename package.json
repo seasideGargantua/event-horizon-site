@@ -1,0 +1,30 @@
+{
+  "name": "event-horizon-site",
+  "version": "0.1.0",
+  "description": "Event Horizon — AI superindividual product discovery network.",
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "check": "astro check"
+  },
+  "keywords": [
+    "event-horizon",
+    "ai",
+    "builders",
+    "product-discovery",
+    "astro"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "@astrojs/mdx": "^6.0.2",
+    "@astrojs/sitemap": "^3.7.3",
+    "astro": "^6.4.4",
+    "typescript": "^6.0.3"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.9"
+  }
+}

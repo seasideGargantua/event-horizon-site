@@ -1,0 +1,32 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '@layouts/BaseLayout.astro';
+import SignalBadge from '@components/SignalBadge.astro';
+
+const events = (await getCollection('events')).sort((a, b) => a.data.date.getTime() - b.data.date.getTime());
+---
+<BaseLayout title="Events — Event Horizon">
+  <section class="page-hero">
+    <div class="container">
+      <span class="eyebrow">Rituals</span>
+      <h1>Open Night, Builder Review, Investor Briefing.</h1>
+      <p>Events are small, evidence-focused operating rituals. Each one should create project updates, collaboration matches, or clearer investor context.</p>
+    </div>
+  </section>
+  <section class="section compact">
+    <div class="container grid-2">
+      {events.map((event) => (
+        <article class="card">
+          <div class="kicker">{new Intl.DateTimeFormat('en', { month: 'short', day: 'numeric' }).format(event.data.date)}</div>
+          <h3>{event.data.title}</h3>
+          <p>{event.data.summary}</p>
+          <div class="meta-row">
+            <SignalBadge>{event.data.type}</SignalBadge>
+            <SignalBadge tone="green">{event.data.status}</SignalBadge>
+          </div>
+          {event.data.registration_url && <a class="button secondary" href={event.data.registration_url} target="_blank" rel="noreferrer">Register</a>}
+        </article>
+      ))}
+    </div>
+  </section>
+</BaseLayout>

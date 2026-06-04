@@ -1,0 +1,21 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '@layouts/BaseLayout.astro';
+import DropCard from '@components/DropCard.astro';
+
+const drops = (await getCollection('drops')).sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+---
+<BaseLayout title="Product Drop — Event Horizon">
+  <section class="page-hero">
+    <div class="container">
+      <span class="eyebrow">Weekly drops</span>
+      <h1>Early signals, shipped weekly.</h1>
+      <p>Product Drop is the community rhythm: new products, live updates, collaboration asks, and investor-readable notes.</p>
+    </div>
+  </section>
+  <section class="section compact">
+    <div class="container grid-2">
+      {drops.map((drop) => <DropCard drop={drop} />)}
+    </div>
+  </section>
+</BaseLayout>

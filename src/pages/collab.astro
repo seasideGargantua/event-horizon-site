@@ -1,0 +1,27 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '@layouts/BaseLayout.astro';
+
+const projects = await getCollection('projects');
+const needs = projects.flatMap((project) => [...project.data.current_need, ...project.data.collaboration_need].map((need) => ({ need, project: project.data.title, slug: project.data.slug })));
+---
+<BaseLayout title="Collab — Event Horizon">
+  <section class="page-hero">
+    <div class="container">
+      <span class="eyebrow">Builder mesh</span>
+      <h1>Find the missing node.</h1>
+      <p>Collaboration starts from specific asks. Browse current needs from projects approaching the horizon.</p>
+    </div>
+  </section>
+  <section class="section compact">
+    <div class="container grid-3">
+      {needs.map((item) => (
+        <a class="card" href={`/projects/${item.slug}`}>
+          <div class="kicker">{item.project}</div>
+          <h3>{item.need}</h3>
+          <p>Respond through the project page or join the next Collaboration Night.</p>
+        </a>
+      ))}
+    </div>
+  </section>
+</BaseLayout>

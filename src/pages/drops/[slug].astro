@@ -1,0 +1,39 @@
+---
+import { getCollection, render } from 'astro:content';
+import BaseLayout from '@layouts/BaseLayout.astro';
+
+export async function getStaticPaths() {
+  const drops = await getCollection('drops');
+  return drops.map((drop) => ({ params: { slug: drop.data.slug }, props: { drop } }));
+}
+
+const { drop } = Astro.props;
+const { Content } = await render(drop);
+const date = new Intl.DateTimeFormat('en', { year: 'numeric', month: 'short', day: 'numeric' }).format(drop.data.date);
+---
+<BaseLayout title={`${drop.data.title} — Event Horizon`} description={drop.data.summary}>
+  <section class="page-hero">
+    <div class="container">
+      <span class="eyebrow">Drop #{drop.data.issue} / {date}</span>
+      <h1>{drop.data.title}</h1>
+      <p>{drop.data.summary}</p>
+    </div>
+  </section>
+  <section class="section compact">
+    <div class="container grid-2">
+      <article class="card prose">
+        <Content />
+      </article>
+      <aside class="card">
+        <div class="kicker">Signal board</div>
+        <h3>This issue</h3>
+        <ul class="signal-list list-reset">
+          {drop.data.new_projects.map((item) => <li>New: {item}</li>)}
+          {drop.data.updates.map((item) => <li>Update: {item}</li>)}
+          {drop.data.collab_needs.map((item) => <li>Collab: {item}</li>)}
+          {drop.data.investor_notes.map((item) => <li>Investor note: {item}</li>)}
+        </ul>
+      </aside>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,58 @@
+---
+import { getCollection, render } from 'astro:content';
+import BaseLayout from '@layouts/BaseLayout.astro';
+import SignalBadge from '@components/SignalBadge.astro';
+
+export async function getStaticPaths() {
+  const projects = await getCollection('projects');
+  return projects.map((project) => ({ params: { slug: project.data.slug }, props: { project } }));
+}
+
+const { project } = Astro.props;
+const { Content } = await render(project);
+const date = new Intl.DateTimeFormat('en', { year: 'numeric', month: 'short', day: 'numeric' }).format(project.data.last_update);
+---
+<BaseLayout title={`${project.data.title} — Event Horizon`} description={project.data.one_liner}>
+  <section class="page-hero">
+    <div class="container">
+      <span class="eyebrow">Project signal</span>
+      <h1>{project.data.title}</h1>
+      <p>{project.data.one_liner}</p>
+      <div class="meta-row">
+        <SignalBadge>{project.data.category}</SignalBadge>
+        <SignalBadge>{project.data.stage}</SignalBadge>
+        <SignalBadge tone="orange">investor {project.data.investor_interest}</SignalBadge>
+        <SignalBadge tone="green">updated {date}</SignalBadge>
+      </div>
+      {project.data.product_url && <a class="button" href={project.data.product_url} target="_blank" rel="noreferrer">Open product</a>}
+    </div>
+  </section>
+  <section class="section compact">
+    <div class="container grid-2">
+      <article class="prose card">
+        <h3>Product context</h3>
+        <p><strong>Owner:</strong> {project.data.owner}</p>
+        <p><strong>Target user:</strong> {project.data.target_user}</p>
+        <p><strong>Problem:</strong> {project.data.problem}</p>
+        <p><strong>Traction signal:</strong> {project.data.traction_signal}</p>
+        <p><strong>Next milestone:</strong> {project.data.next_milestone}</p>
+        <Content />
+      </article>
+      <aside class="card">
+        <div class="kicker">Needs</div>
+        <h3>Current asks</h3>
+        <ul class="list-reset signal-list">
+          {project.data.current_need.map((need) => <li>{need}</li>)}
+          {project.data.collaboration_need.map((need) => <li>{need}</li>)}
+        </ul>
+        <div style="margin-top: 24px;">
+          <div class="kicker">AI stack</div>
+          <div class="meta-row">
+            {project.data.ai_stack.map((item) => <SignalBadge>{item}</SignalBadge>)}
+          </div>
+        </div>
+        {project.data.risk_note && <p><strong>Risk note:</strong> {project.data.risk_note}</p>}
+      </aside>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,25 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '@layouts/BaseLayout.astro';
+import ProjectCard from '@components/ProjectCard.astro';
+
+const projects = (await getCollection('projects')).sort((a, b) => b.data.last_update.getTime() - a.data.last_update.getTime());
+const categories = [...new Set(projects.map((project) => project.data.category))];
+---
+<BaseLayout title="Projects — Event Horizon">
+  <section class="page-hero">
+    <div class="container">
+      <span class="eyebrow">Project radar</span>
+      <h1>AI products with visible proof.</h1>
+      <p>Browse early AI-native products by stage, signal, current need, and investor openness. Filtering UI is intentionally simple for MVP; structured data is already in place.</p>
+      <div class="meta-row">
+        {categories.map((category) => <span class="badge">{category}</span>)}
+      </div>
+    </div>
+  </section>
+  <section class="section compact">
+    <div class="container grid-3">
+      {projects.map((project) => <ProjectCard project={project} />)}
+    </div>
+  </section>
+</BaseLayout>

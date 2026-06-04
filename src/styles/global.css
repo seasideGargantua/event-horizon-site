@@ -147,16 +147,16 @@ h1, h2, h3 {
 }
 
 h1 {
-  max-width: 760px;
-  font-size: clamp(5.4rem, 16vw, 13.5rem);
+  max-width: 720px;
+  font-size: clamp(4.2rem, 12vw, 10rem);
 }
 
 h2 {
-  font-size: clamp(2.7rem, 7vw, 6.2rem);
+  font-size: clamp(2.1rem, 4.8vw, 4.6rem);
 }
 
 h3 {
-  font-size: clamp(1.55rem, 3vw, 2.5rem);
+  font-size: clamp(1.28rem, 2.2vw, 2rem);
 }
 
 .hero {
@@ -174,16 +174,17 @@ h3 {
 }
 
 .hero-copy h1 {
-  margin-top: 18px;
+  margin-top: 16px;
+  max-width: 680px;
 }
 
 .hero-line {
-  max-width: 430px;
-  margin-top: 24px;
+  max-width: 390px;
+  margin-top: 20px;
   color: var(--text);
-  font-size: clamp(1.22rem, 2.1vw, 2rem);
-  line-height: 1.08;
-  letter-spacing: -0.04em;
+  font-size: clamp(1.06rem, 1.65vw, 1.48rem);
+  line-height: 1.18;
+  letter-spacing: -0.03em;
 }
 
 .hero-actions {
@@ -232,7 +233,7 @@ h3 {
   background: var(--cyan);
   box-shadow: 0 0 18px currentColor;
   color: var(--cyan);
-  animation: drift 8s ease-in-out infinite alternate;
+
 }
 
 .orbit-dot:nth-child(1) { left: 18%; top: 27%; }
@@ -241,10 +242,6 @@ h3 {
 .orbit-dot:nth-child(4) { left: 28%; bottom: 31%; color: var(--green); background: var(--green); animation-delay: 2.1s; }
 .orbit-dot:nth-child(5) { right: 34%; top: 18%; width: 5px; height: 5px; animation-delay: 2.8s; }
 
-@keyframes drift {
-  from { transform: translate3d(-10px, 8px, 0) scale(0.85); opacity: 0.58; }
-  to { transform: translate3d(16px, -16px, 0) scale(1.1); opacity: 1; }
-}
 
 .visual-section { padding-top: 8px; }
 
@@ -313,8 +310,8 @@ h3 {
 }
 
 .project-card h3 {
-  margin-top: 28px;
-  font-size: clamp(1.55rem, 3vw, 2.6rem);
+  margin-top: 26px;
+  font-size: clamp(1.42rem, 2.45vw, 2.15rem);
 }
 
 .project-line {
@@ -369,9 +366,13 @@ h3 {
 .signal-list li { padding: 12px 0; border-bottom: 1px solid var(--line); color: var(--muted); }
 .signal-list li:last-child { border-bottom: 0; }
 
-.page-hero { padding: 76px 0 42px; }
-.page-hero h1 { font-size: clamp(3.4rem, 8vw, 7rem); }
-.page-hero p { max-width: 660px; margin-top: 18px; font-size: 1.08rem; }
+.page-hero { padding: 58px 0 32px; }
+.page-hero h1 {
+  max-width: 760px;
+  font-size: clamp(2.4rem, 5.2vw, 4.8rem);
+  line-height: 0.95;
+}
+.page-hero p { max-width: 580px; margin-top: 14px; font-size: 1rem; }
 
 .prose { max-width: 760px; }
 .prose h2, .prose h3 { margin-top: 2em; line-height: 1.08; }
@@ -402,8 +403,8 @@ h3 {
   .hero-shell { grid-template-columns: 1fr; gap: 32px; }
   .hero-copy { order: 2; }
   .horizon-visual { order: 1; justify-self: center; width: min(86vw, 410px); }
-  h1 { font-size: clamp(4rem, 22vw, 7.4rem); }
-  .hero-line { font-size: clamp(1.2rem, 6vw, 1.7rem); }
+  h1 { font-size: clamp(3.7rem, 18vw, 6.2rem); }
+  .hero-line { font-size: clamp(1.06rem, 4.9vw, 1.42rem); }
   .grid-3, .grid-2 { grid-template-columns: 1fr; }
   .system-map { min-height: 360px; object-fit: cover; object-position: center; }
   .section { padding: 58px 0; }

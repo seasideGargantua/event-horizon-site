@@ -1,0 +1,53 @@
+<svg width="1200" height="520" viewBox="0 0 1200 520" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="520" rx="36" fill="#05070A"/>
+  <g opacity="0.34">
+    <path d="M92 260H1108" stroke="#1B3340" stroke-width="1"/>
+    <path d="M600 48V472" stroke="#1B3340" stroke-width="1"/>
+    <circle cx="600" cy="260" r="86" stroke="#183844" stroke-width="1"/>
+    <circle cx="600" cy="260" r="148" stroke="#17313E" stroke-width="1"/>
+    <circle cx="600" cy="260" r="214" stroke="#132733" stroke-width="1"/>
+  </g>
+  <g filter="url(#glow)">
+    <circle cx="600" cy="260" r="74" fill="#02040A"/>
+    <circle cx="600" cy="260" r="92" stroke="url(#ring)" stroke-width="7"/>
+    <ellipse cx="600" cy="260" rx="218" ry="58" transform="rotate(-12 600 260)" stroke="#28D7F0" stroke-opacity="0.26" stroke-width="2"/>
+    <ellipse cx="600" cy="260" rx="304" ry="86" transform="rotate(15 600 260)" stroke="#FB923C" stroke-opacity="0.22" stroke-width="2"/>
+  </g>
+  <g stroke-linecap="round">
+    <path d="M220 158C340 150 438 179 520 228" stroke="url(#lineA)" stroke-width="2"/>
+    <path d="M986 158C862 154 752 182 682 230" stroke="url(#lineB)" stroke-width="2"/>
+    <path d="M284 368C394 351 460 323 525 291" stroke="url(#lineC)" stroke-width="2"/>
+    <path d="M928 366C820 349 743 321 675 291" stroke="url(#lineD)" stroke-width="2"/>
+  </g>
+  <g>
+    <circle cx="220" cy="158" r="9" fill="#22D3EE"/>
+    <circle cx="986" cy="158" r="9" fill="#FDE68A"/>
+    <circle cx="284" cy="368" r="9" fill="#86EFAC"/>
+    <circle cx="928" cy="366" r="9" fill="#FB923C"/>
+    <circle cx="520" cy="228" r="5" fill="#CFFAFE"/>
+    <circle cx="682" cy="230" r="5" fill="#FED7AA"/>
+    <circle cx="525" cy="291" r="5" fill="#DCFCE7"/>
+    <circle cx="675" cy="291" r="5" fill="#FFEDD5"/>
+  </g>
+  <g font-family="IBM Plex Mono, Menlo, monospace" font-size="13" letter-spacing="1.2" fill="#90A7B7">
+    <text x="170" y="135">PROJECT RADAR</text>
+    <text x="930" y="135">CAPITAL SIGNAL</text>
+    <text x="228" y="405">BUILDER MESH</text>
+    <text x="848" y="405">PRODUCT DROP</text>
+  </g>
+  <defs>
+    <filter id="glow" x="360" y="90" width="480" height="340" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feGaussianBlur stdDeviation="16" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <linearGradient id="ring" x1="508" y1="168" x2="692" y2="352" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#22D3EE"/>
+      <stop offset="0.48" stop-color="#FDE68A"/>
+      <stop offset="1" stop-color="#FB923C"/>
+    </linearGradient>
+    <linearGradient id="lineA" x1="220" y1="158" x2="520" y2="228" gradientUnits="userSpaceOnUse"><stop stop-color="#22D3EE"/><stop offset="1" stop-color="#22D3EE" stop-opacity="0.1"/></linearGradient>
+    <linearGradient id="lineB" x1="986" y1="158" x2="682" y2="230" gradientUnits="userSpaceOnUse"><stop stop-color="#FDE68A"/><stop offset="1" stop-color="#FDE68A" stop-opacity="0.1"/></linearGradient>
+    <linearGradient id="lineC" x1="284" y1="368" x2="525" y2="291" gradientUnits="userSpaceOnUse"><stop stop-color="#86EFAC"/><stop offset="1" stop-color="#86EFAC" stop-opacity="0.1"/></linearGradient>
+    <linearGradient id="lineD" x1="928" y1="366" x2="675" y2="291" gradientUnits="userSpaceOnUse"><stop stop-color="#FB923C"/><stop offset="1" stop-color="#FB923C" stop-opacity="0.1"/></linearGradient>
+  </defs>
+</svg>

@@ -3,7 +3,6 @@ import { getCollection } from 'astro:content';
 import BaseLayout from '@layouts/BaseLayout.astro';
 import ProjectCard from '@components/ProjectCard.astro';
 import DropCard from '@components/DropCard.astro';
-import SignalBadge from '@components/SignalBadge.astro';
 
 const projects = (await getCollection('projects')).sort((a, b) => Number(b.data.featured) - Number(a.data.featured));
 const drops = (await getCollection('drops')).sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
@@ -11,71 +10,53 @@ const featured = projects.slice(0, 3);
 const latestDrop = drops[0];
 ---
 <BaseLayout>
-  <section class="hero">
-    <div class="container hero-grid">
+  <section class="hero minimal-hero">
+    <div class="container hero-shell">
       <div class="hero-copy">
         <span class="eyebrow">AI product frontier</span>
         <h1>Event Horizon</h1>
-        <p class="hero-line">Where AI-native products cross into visibility.</p>
+        <p class="hero-line">Early AI products, visible sooner.</p>
         <div class="hero-actions">
-          <a class="button" href="/submit">Submit product</a>
-          <a class="button secondary" href="/projects">Explore signals</a>
-        </div>
-        <div class="hero-stats" aria-label="Event Horizon operating model">
-          <div><strong>01</strong><span>Project radar</span></div>
-          <div><strong>02</strong><span>Weekly drops</span></div>
-          <div><strong>03</strong><span>Investor signal</span></div>
+          <a class="button" href="/submit">Submit</a>
+          <a class="button secondary" href="/projects">Explore</a>
         </div>
       </div>
       <div class="horizon-visual" aria-label="Event horizon signal visual">
         <span class="orbit-dot"></span>
         <span class="orbit-dot"></span>
         <span class="orbit-dot"></span>
+        <span class="orbit-dot"></span>
+        <span class="orbit-dot"></span>
       </div>
+    </div>
+  </section>
+
+  <section class="section compact visual-section">
+    <div class="container">
+      <img class="system-map" src="/horizon-map.svg" alt="Event Horizon connects project radar, product drops, builder mesh, and capital signals." />
     </div>
   </section>
 
   <section class="section compact">
-    <div class="container value-strip">
-      <div>
-        <span>Visibility</span>
-        <strong>Fair first light</strong>
-      </div>
-      <div>
-        <span>Collaboration</span>
-        <strong>Builder mesh</strong>
-      </div>
-      <div>
-        <span>Capital</span>
-        <strong>Proof over pitch</strong>
-      </div>
-    </div>
-  </section>
-
-  <section class="section">
-    <div class="container section-head">
-      <span class="eyebrow">Live signals</span>
-      <h2>Approaching the horizon.</h2>
-      <div class="grid-3" style="margin-top: 28px;">
+    <div class="container section-head minimal-head">
+      <span class="eyebrow">Signals</span>
+      <h2>Now crossing.</h2>
+      <div class="grid-3 compact-grid">
         {featured.map((project) => <ProjectCard project={project} />)}
       </div>
     </div>
   </section>
 
-  <section class="section compact">
-    <div class="container grid-2">
+  <section class="section compact last-section">
+    <div class="container grid-2 compact-grid">
       {latestDrop && <DropCard drop={latestDrop} />}
-      <div class="card drop-panel">
-        <div class="kicker">Rhythm</div>
-        <h3>Product Drop</h3>
-        <p>New launches. Fresh proof. Specific asks.</p>
-        <div class="meta-row">
-          <SignalBadge>new</SignalBadge>
-          <SignalBadge tone="green">collab</SignalBadge>
-          <SignalBadge tone="orange">capital</SignalBadge>
+      <a class="card icon-card" href="/investors" aria-label="Investor briefing">
+        <span class="icon-orbit" aria-hidden="true"></span>
+        <div>
+          <div class="kicker">Briefing</div>
+          <h3>Investor signal</h3>
         </div>
-        <a class="button secondary" href="/drops">Read drops</a>
-      </div>
+      </a>
     </div>
   </section>
 </BaseLayout>
